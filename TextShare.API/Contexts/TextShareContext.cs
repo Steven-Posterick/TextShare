@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TextShare.API.Models.Entities;
+using TextShare.API.Entities;
 
 namespace TextShare.API.Contexts;
 

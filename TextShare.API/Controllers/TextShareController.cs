@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TextShare.API.Exceptions;
-using TextShare.API.Models.Requests;
 using TextShare.API.Services;
+using TextShare.Common.Models.Requests;
 
 namespace TextShare.API.Controllers;
 

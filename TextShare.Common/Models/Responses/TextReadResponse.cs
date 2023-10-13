@@ -1,4 +1,4 @@
-﻿namespace TextShare.API.Models.Responses;
+﻿namespace TextShare.Common.Models.Responses;
 
 public class TextReadResponse
 {

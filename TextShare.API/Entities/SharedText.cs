@@ -1,4 +1,4 @@
-﻿namespace TextShare.API.Models.Entities;
+﻿namespace TextShare.API.Entities;
 
 public class SharedText
 {

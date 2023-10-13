@@ -1,4 +1,4 @@
-﻿namespace TextShare.API.Models.Requests;
+﻿namespace TextShare.Common.Models.Requests;
 
 public class TextCreateRequest
 {

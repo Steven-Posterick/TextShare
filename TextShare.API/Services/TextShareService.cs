@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TextShare.API.Contexts;
+using TextShare.API.Entities;
 using TextShare.API.Exceptions;
-using TextShare.API.Models.Entities;
-using TextShare.API.Models.Requests;
-using TextShare.API.Models.Responses;
+using TextShare.Common.Models.Requests;
+using TextShare.Common.Models.Responses;
 
 namespace TextShare.API.Services;
 
@@ -94,7 +94,8 @@ public class TextShareService : ITextShareService
         {
             Id = sharedText.Id,
             BurnAfterRead = sharedText.BurnAfterReading,
-            IsPasswordProtected = sharedText.PasswordHash != null
+            IsPasswordProtected = sharedText.PasswordHash != null,
+            CreationDate = sharedText.CreationDate
         };
     }
 
