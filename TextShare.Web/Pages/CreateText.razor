@@ -1,0 +1,66 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components
+@using TextShare.Common.Models.Requests
+@using TextShare.Common.Models.Responses
+@using TextShare.Web.Services
+@inject ITextShareService _apiService
+@inject NavigationManager _navigationManager;
+@inject IJSRuntime _jsRuntime;
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        @if (_response == null)
+        {
+            <button disabled="disabled" class="btn btn-start btn-start-unsaved">Start a new text</button>
+            <button type="submit" class="btn btn-primary" @onclick="HandleSubmit">Save</button>
+        }
+        else
+        {
+            <button class="btn btn-start btn-start-saved" @onclick="StartNewText">Start a new text</button>
+            <button class="btn btn-primary" @onclick="CopyLink">Share Link</button>
+        }
+    </div>
+
+    <EditForm Model="@_textCreateModel" class="mb-4">
+        <DataAnnotationsValidator />
+        <ValidationSummary class="mb-3" />
+
+        <div class="form-group">
+            <InputTextArea id="content" @bind-Value="_textCreateModel.Content" class="form-control large-text-box" readonly="@_response" />
+        </div>
+
+        <div class="form-group form-check">
+            <InputCheckbox @bind-Value="_textCreateModel.BurnAfterReading" class="form-check-input" id="burnAfterReading" />
+            <label class="form-check-label" for="burnAfterReading">Burn After Reading</label>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    private readonly TextCreateRequest _textCreateModel = new TextCreateRequest();
+    private TextDetailResponse? _response;
+
+    private async Task HandleSubmit()
+    {
+        var response = await _apiService.CreateTextAsync(_textCreateModel);
+        if (response != null)
+        {
+            _response = response;
+        }
+    }
+
+    private void CopyLink()
+    {
+        if (_response == null) return;
+        
+        var link = _navigationManager.Uri + $"text/{_response.Id}";
+        _jsRuntime.InvokeVoidAsync("navigator.clipboard.writeText", link);
+    }
+
+    private void StartNewText()
+    {
+        _textCreateModel.Content = string.Empty;
+        _textCreateModel.BurnAfterReading = false;
+        _response = null;
+    }
+}

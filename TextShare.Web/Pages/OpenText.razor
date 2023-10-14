@@ -1,0 +1,47 @@
+﻿@page "/text/{Id:guid}"
+@using TextShare.Web.Services
+@using TextShare.Common.Models.Responses
+@inject ITextShareService _apiService
+@inject NavigationManager _navigationManager;
+
+<div class="container mt-4">
+
+    @if (_error != null)
+    {
+        <div class="alert alert-danger">@_error</div>
+    }
+    else if (_textContent == null)
+    {
+        <div class="alert alert-info">Loading details...</div>
+    }
+    else
+    {
+        <button class="btn btn-start btn-start-saved mb-3" @onclick="HandleCreateNew">Start a new text</button>
+        <InputTextArea id="content" @bind-Value="_textContent.Content" readonly="true" class="form-control large-text-box"/>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+    
+    private TextReadResponse? _textContent;
+    private string? _error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _textContent = await _apiService.GetTextAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+
+    private void HandleCreateNew()
+    {
+        _navigationManager.NavigateTo("/");
+    }
+}
