@@ -14,4 +14,6 @@
 */bin/
 */obj/
 /.idea
+*/Properties/
+*/PackageLocation/
 /TextShare.Web

@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextShare.Web", "TextShare.Web\TextShare.Web.csproj", "{F6BE1CE1-BE5D-4C99-B1B8-FA813B0C19D2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextShare.API", "TextShare.API\TextShare.API.csproj", "{FDEEDAC1-4131-4398-A9C1-A62B08821413}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextShare.Common", "TextShare.Common\TextShare.Common.csproj", "{276E51D7-2FFB-46B7-959D-9D56537004C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextShare.Web", "TextShare.Web\TextShare.Web.csproj", "{C4EF286E-E2EF-438B-A273-58AF9DCF83E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,10 +12,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F6BE1CE1-BE5D-4C99-B1B8-FA813B0C19D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6BE1CE1-BE5D-4C99-B1B8-FA813B0C19D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6BE1CE1-BE5D-4C99-B1B8-FA813B0C19D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6BE1CE1-BE5D-4C99-B1B8-FA813B0C19D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FDEEDAC1-4131-4398-A9C1-A62B08821413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FDEEDAC1-4131-4398-A9C1-A62B08821413}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDEEDAC1-4131-4398-A9C1-A62B08821413}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -24,5 +20,9 @@ Global
 		{276E51D7-2FFB-46B7-959D-9D56537004C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{276E51D7-2FFB-46B7-959D-9D56537004C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{276E51D7-2FFB-46B7-959D-9D56537004C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4EF286E-E2EF-438B-A273-58AF9DCF83E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4EF286E-E2EF-438B-A273-58AF9DCF83E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4EF286E-E2EF-438B-A273-58AF9DCF83E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4EF286E-E2EF-438B-A273-58AF9DCF83E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

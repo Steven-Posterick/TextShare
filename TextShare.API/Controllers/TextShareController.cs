@@ -6,7 +6,7 @@ using TextShare.Common.Models.Requests;
 namespace TextShare.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class TextShareController : ControllerBase
 {
     private readonly ITextShareService _textShareService;
@@ -22,7 +22,7 @@ public class TextShareController : ControllerBase
         try
         {
             var sharedText = await _textShareService.CreateTextAsync(textRequest);
-            return CreatedAtAction(nameof(GetText), new { id = sharedText.Id }, sharedText);
+            return CreatedAtAction(nameof(GetTextDetails), new { id = sharedText.Id }, sharedText);
         }
         catch (Exception ex)
         {
@@ -49,14 +49,14 @@ public class TextShareController : ControllerBase
         }
     }
     
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetText(Guid id, [FromQuery] string? password = null)
+    [HttpPost("{id:guid}")]
+    public async Task<IActionResult> GetText(Guid id, [FromBody] TextReadRequest? readRequest = null)
     {
         try
         {
-            var sharedText = await _textShareService.GetTextAsync(id, password);
+            var sharedText = await _textShareService.GetTextAsync(id, readRequest?.Password);
 
-            return Ok();
+            return Ok(sharedText);
         }
         catch (EntityNotFoundException)
         {
