@@ -2,16 +2,16 @@ using TextShare.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if (builder.Environment.IsDevelopment())
+
+builder.Services.AddCors(options =>
 {
-    builder.Services.AddCors(options =>
-    {
-        options.AddPolicy("AllowSpecificOrigin",
-            p => p.WithOrigins("http://localhost:5051")
-                .AllowAnyHeader()
-                .AllowAnyMethod());
-    });
-}
+    options.AddPolicy("AllowSpecificOrigin",
+        p => p.WithOrigins(builder.Environment.IsDevelopment() ? 
+                "http://localhost:5051" : "https://textshare.stevenposterick.dev")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -26,12 +26,9 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseCors("AllowSpecificOrigin");
-}
-
 app.UseRouting();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 
