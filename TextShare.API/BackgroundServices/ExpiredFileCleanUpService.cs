@@ -9,18 +9,21 @@ namespace TextShare.API.BackgroundServices;
 /// </summary>
 public class ExpiredFileCleanUpService : BackgroundService
 {
-    private readonly TextShareContext _context;
+    private readonly IServiceScopeFactory _serviceScopeFactory;
 
-    public ExpiredFileCleanUpService(TextShareContext context)
+    public ExpiredFileCleanUpService(IServiceScopeFactory serviceScopeFactory)
     {
-        _context = context;
+        _serviceScopeFactory = serviceScopeFactory;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            await _context
+            using var scope = _serviceScopeFactory.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<TextShareContext>();
+
+            await context
                 .SharedTexts
                 .Where(x => x.ExpirationDate < DateTime.UtcNow)
                 .ExecuteDeleteAsync(stoppingToken);

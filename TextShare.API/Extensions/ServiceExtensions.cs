@@ -10,11 +10,11 @@ public static class ServiceExtensions
     public static void ConfigureServices(this IServiceCollection services)
     {
         // Contexts
-        services.AddDbContext<TextShareContext>((provider, options) =>
+        services.AddDbContextPool<TextShareContext>((provider, options) =>
         {
             var configuration = provider.GetRequiredService<IConfiguration>();
             var connectionString = configuration.GetConnectionString("TextShareConnectionString");
-            options.UseSqlServer(connectionString);
+            options.UseSqlServer(connectionString, sqlOptions => sqlOptions.EnableRetryOnFailure());
         });
 
         // Services
